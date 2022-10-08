@@ -1,0 +1,9 @@
+UID        PID  PPID  C STIME TTY          TIME CMD
+root         1     0  0 17:22 ?        00:00:00 /init
+root         8     1  0 17:22 ?        00:00:01 /init
+hyokim      99     8  0 17:41 ?        00:00:08 gpg-agent --homedir /home/hyokim/.gnupg --use-standard-socket --daemon
+hyokim    1761     8  0 22:30 ?        00:00:00 ssh-agent -s
+root      3862     1  0 22:39 ?        00:00:00 /init
+root      3863  3862  0 22:39 ?        00:00:00 /init
+hyokim    3864  3863  0 22:39 pts/0    00:00:00 -bash
+hyokim    4276  3864  0 22:43 pts/0    00:00:00 ps -ef
