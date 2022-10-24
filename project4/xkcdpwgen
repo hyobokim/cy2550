@@ -30,8 +30,15 @@ if __name__ == "__main__":
 
     # adding caps
     for c in range(args.caps):
-        index = random.randint(0, args.words - 1)
-        password[index] = password[index].capitalize()
+        if args.caps > args.words:
+            print("Error: More words to capitalize than available")
+            break
+        while(True):
+            index = random.randint(0, args.words - 1)
+            if password[index].isupper(): # if word is already capitalized, use another word
+                continue
+            password[index] = password[index].capitalize()
+            break
 
     # adding symbols
     symbols = " (~!@#$%^&*.:;)"
