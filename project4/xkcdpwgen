@@ -33,9 +33,10 @@ if __name__ == "__main__":
         if args.caps > args.words:
             print("Error: More words to capitalize than available")
             break
+
         while(True):
             index = random.randint(0, args.words - 1)
-            if password[index].isupper(): # if word is already capitalized, use another word
+            if password[index].istitle(): # if word is already capitalized, use another word
                 continue
             password[index] = password[index].capitalize()
             break
