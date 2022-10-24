@@ -1,0 +1,58 @@
+#!/usr/bin/env python3
+import random
+import argparse
+
+if __name__ == "__main__":
+    # opening words file
+    words_file = open('words.txt', 'r')
+
+    # retrieving all words and converting to list
+    all_words = words_file.read()
+    all_words = all_words.replace('\n', ' ').split(" ")
+    words_file.close()
+
+    # arguments
+    parser = argparse.ArgumentParser(description='Parameters for password generation.')
+    parser.add_argument('-w', '--words', dest='words', type=int, default='4',
+                        help='number of words to include in the password gen')
+    parser.add_argument('-n', '--numbers', dest='numbers', type=int, default='0',
+                        help='number of random numerical characters to add')
+    parser.add_argument('-s', '--symbols', dest='symbols', type=int, default='0',
+                        help='number of random symbols to add')
+    parser.add_argument('-c', '--caps', dest='caps', type=int, default='0',
+                        help='number of random words to capitalize')
+
+    args = parser.parse_args()
+    password = []
+
+    for i in range(args.words):
+        password.append(all_words[random.randint(0, len(all_words) - 1)])
+
+    # adding caps
+    for c in range(args.caps):
+        index = random.randint(0, args.words - 1)
+        password[index] = password[index].capitalize()
+
+    # adding symbols
+    symbols = " (~!@#$%^&*.:;)"
+    for s in range(args.symbols):
+        random_symbol = symbols[random.randint(0, len(symbols) - 1)]
+        # add a symbol to beginning of the word at index. if index = length of list, add symbol to end
+        index = random.randint(0, args.words)
+        if index == args.words:
+            password[args.words - 1] = password[args.words - 1] + random_symbol
+        else:
+            password[index] = random_symbol + password[index]
+
+    # adding numbers
+    numbers = "0123456789"
+    for n in range(args.numbers):
+        random_number = numbers[random.randint(0, len(numbers) - 1)]
+        # add a symbol to beginning of the word at index. if index = length of list, add symbol to end
+        index = random.randint(0, args.words)
+        if index == args.words:
+            password[args.words - 1] = password[args.words - 1] + random_number
+        else:
+            password[index] = random_number + password[index]
+
+    print("".join(password))
