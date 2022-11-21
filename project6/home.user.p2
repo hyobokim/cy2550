@@ -1,5 +1,5 @@
 include <tunables/global>
-/home/hyokim/p2 flags=(audit) {
+/home/hyokim/p2 {
    include <abstractions/base>
    /home/hyokim/p2 mr,
    /tmp/** rw,
